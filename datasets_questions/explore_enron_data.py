@@ -17,6 +17,12 @@
 
 import pickle
 
-enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
+enron_data: dict = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
 
+personsOfInterest = { key: value for key, value in enron_data.items() if value["poi"] }
+knownEmailAddress = { key: value for key, value in enron_data.items() if value["email_address"] != "NaN" }
+quantifiedSalary = { key: value for key, value in enron_data.items() if value["salary"] != "NaN" }
+unknownTotalPayments = { key: value for key, value in enron_data.items() if value["total_payments"] == "NaN" }
 
+for dictionary in [personsOfInterest, knownEmailAddress, quantifiedSalary, unknownTotalPayments]:
+    print(len(dictionary))
