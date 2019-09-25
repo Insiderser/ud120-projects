@@ -123,6 +123,3 @@ def targetFeatureSplit( data ):
 
     return target, features
 
-
-
-
