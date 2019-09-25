@@ -2,9 +2,6 @@
 
 import os
 import pickle
-import re
-
-from tools.parse_out_email_text import parseOutText
 
 """
     Starter code to process the emails from Sara and Chris to extract

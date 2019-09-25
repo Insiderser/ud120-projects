@@ -1,5 +1,6 @@
-from sklearn.linear_model import LinearRegression
 import os
+
+from sklearn.linear_model import LinearRegression
 
 # Linear regression tries to create a linear equation: y = k * x + b, where x is a parameter
 reg = LinearRegression(n_jobs=os.cpu_count())

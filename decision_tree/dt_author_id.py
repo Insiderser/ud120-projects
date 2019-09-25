@@ -7,11 +7,10 @@
     Sara has label 0
     Chris has label 1
 """
-    
-from time import time
-from tools.email_preprocess import preprocess
+
 from sklearn.tree import DecisionTreeClassifier
 
+from tools.email_preprocess import preprocess
 
 ### features_train and features_test are the features for the training
 ### and testing datasets, respectively

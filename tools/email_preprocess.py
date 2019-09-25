@@ -2,9 +2,9 @@
 
 import pickle
 
-from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, f_classif
+from sklearn.model_selection import train_test_split
 
 
 def preprocess(words_file="../tools/word_data.pkl", authors_file="../tools/email_authors.pkl"):

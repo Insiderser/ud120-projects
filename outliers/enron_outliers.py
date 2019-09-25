@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import pickle
-import matplotlib.pyplot
-from tools.feature_format import featureFormat
 
+import matplotlib.pyplot
+
+from tools.feature_format import featureFormat
 
 ### read in data dictionary, convert to numpy array
 data_dict: dict = pickle.load( open("../final_project/final_project_dataset.pkl", "rb") )

@@ -5,10 +5,12 @@
 """
 
 import pickle
+from os import cpu_count
+
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+
 from tools.feature_format import featureFormat, targetFeatureSplit
-from os import cpu_count
 
 
 def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature 1",
@@ -21,7 +23,7 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
     for ii, pp in enumerate(pred):
         plt.scatter(features[ii][0], features[ii][1], color=colors[pred[ii]])
 
-    ### if you like, place red stars over points that are POIs (just for funsies)
+    ### if you like, place red stars over points that are POIs (just for fun)
     if mark_poi:
         for ii, pp in enumerate(pred):
             if poi[ii]:

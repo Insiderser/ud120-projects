@@ -11,7 +11,9 @@
 """
 
 import pickle
+
 from sklearn.model_selection import StratifiedShuffleSplit
+
 from tools.feature_format import featureFormat, targetFeatureSplit
 
 PERF_FORMAT_STRING = "\

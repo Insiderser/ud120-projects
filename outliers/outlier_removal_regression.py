@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
-import random
-import numpy
-import matplotlib.pyplot as plt
 import pickle
 
-from outliers.outlier_cleaner import outlierCleaner
+import matplotlib.pyplot as plt
+import numpy
 
+from outliers.outlier_cleaner import outlierCleaner
 
 ### load up some practice data with outliers in it
 ages = pickle.load( open("practice_outliers_ages.pkl", "rb") )

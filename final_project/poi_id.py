@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
 import pickle
-from tools.feature_format import featureFormat, targetFeatureSplit
+
 from final_project.tester import dump_classifier_and_data
+from tools.feature_format import featureFormat, targetFeatureSplit
 
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.

@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 import pickle
+
 import numpy
+
 numpy.random.seed(42)
 
 

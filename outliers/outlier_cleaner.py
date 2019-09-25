@@ -13,7 +13,7 @@ def outlierCleaner(predictions, ages, net_worths):
     
     new_data_size = int(float(len(ages)) * 0.9)
 
-    new_data: list[tuple] = []
+    new_data = []
     for i in range(len(ages)):
         age = ages[i]
         net_worth = net_worths[i]

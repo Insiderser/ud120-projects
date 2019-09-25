@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-import matplotlib.pyplot as plt
-from choose_your_own.prep_terrain_data import makeTerrainData
-from choose_your_own.class_vis import prettyPicture
-from sklearn.neighbors import KNeighborsClassifier
-import multiprocessing
 import os
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from choose_your_own.class_vis import prettyPicture
+from choose_your_own.prep_terrain_data import makeTerrainData
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
