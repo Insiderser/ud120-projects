@@ -9,6 +9,7 @@ from os import cpu_count
 
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
 
 from tools.feature_format import featureFormat, targetFeatureSplit
 
@@ -34,6 +35,13 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
     plt.show()
 
 
+def scaleFeatures(features):
+    scaler = MinMaxScaler()
+    scaler.fit(features)
+    print(scaler.transform([[200_000.0, 1_000_000.0]]))
+    return scaler.transform(features)
+
+
 ### load in the dict of dicts containing all the data on each person in the dataset
 data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
 ### there's an outlier--remove it! 
@@ -43,17 +51,18 @@ data_dict.pop("TOTAL", 0)
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
-feature_3 = "total_payments"
+# feature_3 = "total_payments"
 poi = "poi"
-features_list = [poi, feature_1, feature_2, feature_3]
+features_list = [poi, feature_1, feature_2]  # , feature_3]
 data = featureFormat(data_dict, features_list)
 poi, finance_features = targetFeatureSplit(data)
+finance_features = scaleFeatures(finance_features)
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, the line below assumes 2 features)
-for f1, f2, _ in finance_features:
+for f1, f2 in finance_features:
     plt.scatter(f1, f2)
 plt.show()
 
