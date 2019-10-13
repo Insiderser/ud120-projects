@@ -3,6 +3,10 @@
 import os
 import pickle
 
+from sklearn.feature_extraction.text import TfidfVectorizer as Vectorizer
+
+from tools.parse_out_email_text import parseOutText
+
 """
     Starter code to process the emails from Sara and Chris to extract
     the features and get the documents ready for classification.
@@ -34,20 +38,32 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
         ### only look at first 200 emails when developing
         ### once everything is working, remove this line to run over full dataset
-        temp_counter += 1
+        # temp_counter += 1
         if temp_counter < 200:
             path = os.path.join('..', path[:-1])
-            print(path)
+            # print(path)
             email = open(path, "r")
 
             ### use parseOutText to extract the text from the opened email
+            email_text = parseOutText(email)
 
             ### use str.replace() to remove any instances of the words
             ### ["sara", "shackleton", "chris", "germani"]
+            for replace_word in ["sara", "shackleton", "chris", "germani"]:
+                email_text = email_text.replace(replace_word, '')
 
             ### append the text to word_data
+            word_data.append(email_text)
 
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
+            if name == 'sara':
+                from_label = 0
+            elif name == 'chris':
+                from_label = 1
+            else:
+                raise RuntimeError("Unknown name: %s" % name)
+
+            from_data.append(from_label)
 
             email.close()
 
@@ -55,9 +71,16 @@ print("emails processed")
 from_sara.close()
 from_chris.close()
 
+print(word_data[152])
+
 pickle.dump(word_data, open("your_word_data.pkl", "wb"))
 pickle.dump(from_data, open("your_email_authors.pkl", "wb"))
 
 ### in Part 4, do TfIdf vectorization here
 
+vectorizer = Vectorizer(stop_words='english')
+transformed_text = vectorizer.fit_transform(word_data)
 
+vocabulary_list = vectorizer.get_feature_names()
+print(len(vocabulary_list))
+print(vocabulary_list[34597])
