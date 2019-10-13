@@ -1,9 +1,12 @@
 #!/usr/bin/python
 
 import string
+from typing import TextIO
+
+from nltk.stem.snowball import SnowballStemmer
 
 
-def parseOutText(f):
+def parseOutText(f: TextIO):
     """ given an opened email file f, parse out all text below the
         metadata block at the top
         (in Part 2, you will also add stemming capabilities)
@@ -24,7 +27,10 @@ def parseOutText(f):
     words = ""
     if len(content) > 1:
         ### remove punctuation
-        text_string = content[1].translate(bytes.maketrans(b"", b""), string.punctuation)
+        translation = dict()
+        for char in string.punctuation:
+            translation[ord(char)] = None
+        text_string = content[1].translate(translation)
 
         ### project part 2: comment out the line below
         words = text_string
