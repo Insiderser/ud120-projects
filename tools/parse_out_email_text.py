@@ -40,10 +40,7 @@ def parseOutText(f: TextIO):
         ### space between each stemmed word)
         stemmer = SnowballStemmer(language='english')
 
-        for word in text_string.split():
-            words += ' ' + stemmer.stem(word)
-
-        words = words[1:]
+        words = ' '.join([stemmer.stem(word) for word in text_string.split()])
 
     return words
 
